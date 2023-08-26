@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Lista de Proveedores</h2>
+
+    <!-- Lista de Proveedores -->
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header bg-primary text-white">Proveedores de Res</div>
+                <ul class="list-group list-group-flush">
+                    {% for proveedor in proveedores_res %}
+                        <li class="list-group-item"><a href="{{proveedor.id}}" data-toggle="modal" data-target="#modal-{{ proveedor.id }}">{{ proveedor.nombre }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header bg-warning">Proveedores de Pollo</div>
+                <ul class="list-group list-group-flush">
+                    {% for proveedor in proveedores_pollo %}
+                        <li class="list-group-item"><a href="#" data-toggle="modal" data-target="#modal-{{ proveedor.id }}">{{ proveedor.nombre }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header bg-success text-white">Proveedores de Cerdo</div>
+                <ul class="list-group list-group-flush">
+                    {% for proveedor in proveedores_cerdo %}
+                        <li class="list-group-item"><a href="#" data-toggle="modal" data-target="#modal-{{ proveedor.id }}">{{ proveedor.nombre }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header bg-danger text-white">Proveedores de Embutido</div>
+                <ul class="list-group list-group-flush">
+                    {% for proveedor in proveedores_embutido %}
+                        <li class="list-group-item"><a href="#" data-toggle="modal" data-target="#modal-{{ proveedor.id }}">{{ proveedor.nombre }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modales para facturas pendientes -->
+    {% for proveedor in proveedores_res %}
+        {% include "modal_factura.html" %}
+    {% endfor %}
+
+    {% for proveedor in proveedores_pollo %}
+        {% include "modal_factura.html" %}
+    {% endfor %}
+
+    {% for proveedor in proveedores_cerdo %}
+        {% include "modal_factura.html" %}
+    {% endfor %}
+
+    {% for proveedor in proveedores_embutido %}
+        {% include "modal_factura.html" %}
+    {% endfor %}
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% endblock %}

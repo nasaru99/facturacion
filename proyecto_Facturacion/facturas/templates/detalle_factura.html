@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}
+Detalle de Factura
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Detalle de Factura #{{ factura.id }}</h2>
+    <p><strong>Fecha de Creación:</strong> {{ factura.fecha_creacion }}</p>
+   
+
+    <!-- Mostrar detalles de la factura -->
+    <h4>Productos en esta factura:</h4>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Costo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in detalles_con_costo %}
+            <tr>
+                <td>{{ item.detalle.producto.nombre }}</td>
+                <td>{{ item.detalle.cantidad }}</td>
+                <td>{{ item.detalle.producto.precio_cliente }}</td>
+                <td>{{ item.costo }}</td>
+            </tr>
+            {% endfor %}
+            
+           
+    </table>
+    <p><strong>Total:</strong> {{ factura.total }}</p>
+</tbody>
+</div>
+{% endblock %}

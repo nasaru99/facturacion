@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Lista de Proveedores</h2>
+
+<!-- Lista de Proveedores -->
+<ul class="list-group mb-4"> <!-- Clase de Bootstrap para estilizar la lista -->
+    <li class="list-group-item"><h3>Proveedores de Res</h3>
+        <ul class="list-group">
+        {% for proveedor in proveedores_res %}
+            <li class="list-group-item"><a href="#" data-toggle="modal" data-target="#modal-{{ proveedor.id }}">{{ proveedor.nombre }}</a></li>
+        {% endfor %}
+        </ul>
+    </li>
+
+    <li class="list-group-item"><h3>Proveedores de Pollo</h3>
+        <ul class="list-group">
+        {% for proveedor in proveedores_pollo %}
+            <li class="list-group-item"><a href="#" data-toggle="modal" data-target="#modal-{{ proveedor.id }}">{{ proveedor.nombre }}</a></li>
+        {% endfor %}
+        </ul>
+    </li>
+
+    <li class="list-group-item"><h3>Proveedores de Cerdo</h3>
+        <ul class="list-group">
+        {% for proveedor in proveedores_cerdo %}
+            <li class="list-group-item"><a href="#" data-toggle="modal" data-target="#modal-{{ proveedor.id }}">{{ proveedor.nombre }}</a></li>
+        {% endfor %}
+        </ul>
+    </li>
+
+    <li class="list-group-item"><h3>Proveedores de Embutido</h3>
+        <ul class="list-group">
+        {% for proveedor in proveedores_embutido %}
+            <li class="list-group-item"><a href="#" data-toggle="modal" data-target="#modal-{{ proveedor.id }}">{{ proveedor.nombre }}</a></li>
+        {% endfor %}
+        </ul>
+    </li>
+</ul>
+<!-- Modales para facturas pendientes -->
+{% for proveedor in proveedores_res %}
+    <!-- Modal para proveedor de Res -->
+    <div class="modal fade" id="modal-{{ proveedor.id }}" tabindex="-1" role="dialog" aria-labelledby="modalLabel{{ proveedor.id }}" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel{{ proveedor.id }}">Facturas pendientes para {{ proveedor.nombre }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                    {% for factura in proveedor.facturas_pendientes %}
+                        <li>{{ factura.fecha_creacion }} - {{ factura.total }}</li>
+                    {% empty %}
+                        <li>No hay facturas pendientes</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+
+{% for proveedor in proveedores_pollo %}
+    <!-- Modal para proveedor de Pollo -->
+    <div class="modal fade" id="modal-{{ proveedor.id }}" tabindex="-1" role="dialog" aria-labelledby="modalLabel{{ proveedor.id }}" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel{{ proveedor.id }}">Facturas pendientes para {{ proveedor.nombre }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                    {% for factura in proveedor.facturas_pendientes %}
+                    <li>{{ factura.fecha_creacion }} - {{ factura.total }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+{% for proveedor in proveedores_cerdo %}
+    <!-- Modal para proveedor de Cerdo -->
+    <div class="modal fade" id="modal-{{ proveedor.id }}" tabindex="-1" role="dialog" aria-labelledby="modalLabel{{ proveedor.id }}" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel{{ proveedor.id }}">Facturas pendientes para {{ proveedor.nombre }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                    {% for factura in proveedor.facturas_pendientes %}
+                    <li>{{ factura.fecha_creacion }} - {{ factura.total }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+{% for proveedor in proveedores_embutido %}
+    <!-- Modal para proveedor de Embutido -->
+    <div class="modal fade" id="modal-{{ proveedor.id }}" tabindex="-1" role="dialog" aria-labelledby="modalLabel{{ proveedor.id }}" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel{{ proveedor.id }}">Facturas pendientes para {{ proveedor.nombre }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                    {% for factura in proveedor.facturas_pendientes %}
+                    <li>{{ factura.fecha_creacion }} - {{ factura.total }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}

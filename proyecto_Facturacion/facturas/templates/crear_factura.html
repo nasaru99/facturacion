@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}
+Crear Factura
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Crear Factura</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ factura_form.as_p }}
+        {{ detalle_formset.management_form }}
+        {% for form in detalle_formset %}
+            {{ form.as_p }}
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+{% endblock %}

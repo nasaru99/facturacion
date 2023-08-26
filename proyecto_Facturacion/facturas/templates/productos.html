@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}
+Lista de Productos
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Lista de Productos</h2>
+
+    <div class="accordion" id="productosAccordion">
+
+        <!-- Res -->
+        <div class="card">
+            <div class="card-header" id="headingRes">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseRes" aria-expanded="true" aria-controls="collapseRes">
+                        Res
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseRes" class="collapse show" aria-labelledby="headingRes" data-parent="#productosAccordion">
+                <div class="card-body">
+                    <!-- Lista de productos de Res -->
+                    <ul>
+                        {% for producto in productos_res %}
+                            <li>{{ producto.nombre }} - {{ producto.precio_Publico }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pollo -->
+        <div class="card">
+            <div class="card-header" id="headingPollo">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapsePollo" aria-expanded="false" aria-controls="collapsePollo">
+                        Pollo
+                    </button>
+                </h5>
+            </div>
+            <div id="collapsePollo" class="collapse" aria-labelledby="headingPollo" data-parent="#productosAccordion">
+                <div class="card-body">
+                    <!-- Lista de productos de Pollo -->
+                    <ul>
+                        {% for producto in productos_pollo %}
+                            <li>{{ producto.nombre }} - {{ producto.precio_Publico }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cerdo -->
+        <div class="card">
+            <div class="card-header" id="headingCerdo">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseCerdo" aria-expanded="false" aria-controls="collapseCerdo">
+                        Cerdo
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseCerdo" class="collapse" aria-labelledby="headingCerdo" data-parent="#productosAccordion">
+                <div class="card-body">
+                    <!-- Lista de productos de Cerdo -->
+                    <ul>
+                        {% for producto in productos_cerdo %}
+                            <li>{{ producto.nombre }} - {{ producto.precio_Publico }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Embutido -->
+        <div class="card">
+            <div class="card-header" id="headingEmbutido">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseEmbutido" aria-expanded="false" aria-controls="collapseEmbutido">
+                        Embutido
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseEmbutido" class="collapse" aria-labelledby="headingEmbutido" data-parent="#productosAccordion">
+                <div class="card-body">
+                    <!-- Lista de productos de Embutido -->
+                    <ul>
+                        {% for producto in productos_embutido %}
+                            <li>{{ producto.nombre }} - {{ producto.precio_Publico }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<!-- Añade aquí cualquier CSS adicional si es necesario -->
+{% endblock %}
+
+{% block extra_js %}
+<!-- Añade aquí cualquier JS adicional si es necesario -->
+{% endblock %}

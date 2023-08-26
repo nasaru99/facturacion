@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}
+Inicio
+{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Bienvenido al Sistema de Facturación</h1>
+    <p class="lead">Selecciona una de las opciones para continuar:</p>
+    <hr class="my-4">
+    <div class="list-group">
+        <a href="provedores" class="list-group-item list-group-item-action list-group-item-primary">
+            <i class="fas fa-truck"></i> Ver lista de proveedores
+        </a>
+        <a href="clientes" class="list-group-item list-group-item-action list-group-item-secondary">
+            <i class="fas fa-users"></i> Ver lista de clientes
+        </a>
+        <a href="productos" class="list-group-item list-group-item-action list-group-item-success">
+            <i class="fas fa-box"></i> Ver lista de productos
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<!-- Font Awesome para íconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+{% endblock %}

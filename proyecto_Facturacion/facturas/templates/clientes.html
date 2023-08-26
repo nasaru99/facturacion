@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}
+Lista de Clientes
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Lista de Clientes</h2>
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                
+               
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for cliente in clientes %}
+            <tr data-toggle="modal" data-target="#facturasModal{{ cliente.id }}">
+                <td>{{ cliente.nombre }}</td>
+                
+            </tr>
+
+            <!-- Modal para mostrar facturas pendientes del cliente -->
+            <div class="modal fade" id="facturasModal{{ cliente.id }}" tabindex="-1" role="dialog" aria-labelledby="facturasModalLabel{{ cliente.id }}" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="facturasModalLabel{{ cliente.id }}">Facturas Pendientes de {{ cliente.nombre }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                {% for factura in cliente.factura_set.all %}
+                                    {% if factura.pendiente %}
+                                        <li>
+                                            Fecha: {{ factura.fecha_creacion }} Saldo: {{ factura.total }}C$ 
+                                            <a href="{% url 'detalle_factura' factura.id %}">Ver Detalle</a>
+                                        </li>
+                                    {% endif %}
+                                {% empty %}
+                                    <li>No hay facturas pendientes</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        
+                        
+                        <div class="modal-footer">
+                            <a href="{% url 'crear_factura' cliente_id=cliente.id proveedor='Tramo' %}" class="btn btn-primary">Crear Nueva Factura</a>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#crearClienteModal">
+    Crear Cliente
+</button>
+  
+<!-- Modal para crear cliente -->
+<div class="modal fade" id="crearClienteModal" tabindex="-1" role="dialog" aria-labelledby="crearClienteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="crearClienteModalLabel">Crear Cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{% url 'clientes' %}" method="post">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" required>
+                    </div>
+                   
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Cliente</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_css %}
+<!-- Añade aquí cualquier CSS adicional si es necesario -->
+{% endblock %}
+
+{% block extra_js %}
+<!-- Añade aquí cualquier JS adicional si es necesario -->
+{% endblock %}
